@@ -1,6 +1,7 @@
 require('./config')
 
 const express = require('express')
+const mongoose = require('mongoose')
 
 const app = express()
 
@@ -13,29 +14,17 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.get('/usuario', (req, res) => {
-    res.json(`get usuario`)
-})
+app.use(require('./routes/usuario'))
 
-app.post('/usuario', (req, res) => {
+mongoose.connect(process.env.URLDB,
+                { useNewUrlParser: true, useCreateIndex: true },
+                (err, res) => {
 
-    let body = req.body
+    if (err) throw err;
 
-    res.json({
-        persona: body
-    })
-})
+    console.log('Base de datos ONLINE');
 
-app.put('/usuario/:id', (req, res) => {
-    let id = req.params.id
-    res.json({
-        id
-    })
-})
-
-app.delete('/usuario', (req, res) => {
-    res.json(`delete usuario`)
-})
+});
 
 app.listen(process.env.PORT, () => {
     console.log(`Escuchado en el puerto ${ process.env.PORT }`)
