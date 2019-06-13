@@ -2,6 +2,13 @@ require('./config')
 
 const express = require('express')
 const mongoose = require('mongoose')
+const colors = require('colors')
+
+colors.setTheme({
+    ready: ['yellow', 'bold', 'bgGreen'],
+    error:['white', 'italic', 'bgRed']
+  });
+
 
 const app = express()
 
@@ -13,8 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Parse application/json
 app.use(bodyParser.json())
 
-
-app.use(require('./routes/usuario'))
+//Configuracion globar de rutas
+app.use(require('./routes/index'))
 
 mongoose.connect(process.env.URLDB,
                 { useNewUrlParser: true, useCreateIndex: true },
@@ -22,10 +29,10 @@ mongoose.connect(process.env.URLDB,
 
     if (err) throw err;
 
-    console.log('Base de datos ONLINE');
+    console.log('Base de datos ONLINE'.ready);
 
 });
 
 app.listen(process.env.PORT, () => {
-    console.log(`Escuchado en el puerto ${ process.env.PORT }`)
+    console.log(`Escuchado en el puerto ${ process.env.PORT }`.ready)
 })
