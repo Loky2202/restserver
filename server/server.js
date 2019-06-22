@@ -3,6 +3,7 @@ require('./config')
 const express = require('express')
 const mongoose = require('mongoose')
 const colors = require('colors')
+const path = require('path')
 
 colors.setTheme({
     ready: ['yellow', 'bold', 'bgGreen'],
@@ -19,6 +20,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Parse application/json
 app.use(bodyParser.json())
+
+//Habilitar la carpeta public
+
+app.use( express.static( path.resolve( __dirname, '../public' ) ) )
 
 //Configuracion globar de rutas
 app.use(require('./routes/index'))
