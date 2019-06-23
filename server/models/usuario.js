@@ -50,6 +50,7 @@ usuarioSchema.methods.toJSON = function() {
     return userObject
 }
 
+//ve en la base de datos si hay correos iguales
 usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe de ser unico'})
 
 module.exports = mongoose.model('Usuario', usuarioSchema)

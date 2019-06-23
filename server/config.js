@@ -15,7 +15,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 // ============================
 /* segundos * minutos * horas * dias */
 
-process.env.VAR_CADUCIDAD = 60 * 60 * 24 * 30
+process.env.VAR_CADUCIDAD = '48h'
 
 // ============================
 //  Semilla
