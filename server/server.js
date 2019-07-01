@@ -27,6 +27,9 @@ app.use( express.static( path.resolve( __dirname, '../public' ) ) )
 //Configuracion globar de rutas
 app.use(require('./routes/index'))
 
+
+mongoose.set('useFindAndModify', false);
+
 mongoose.connect(process.env.URLDB,
                 { useNewUrlParser: true, useCreateIndex: true },
                 (err, res) => {
@@ -34,7 +37,6 @@ mongoose.connect(process.env.URLDB,
     if (err) throw err;
 
     console.log('Base de datos ONLINE'.ready);
-
 });
 
 app.listen(process.env.PORT, () => {

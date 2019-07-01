@@ -95,7 +95,7 @@ app.put('/categoria/:id', [verificacionToken, verificaAdmin_Role], (req, res) =>
 })
 
 //Eliminar categoria por admin
-app.delete('/categoria/:id', (req, res) => {
+app.delete('/categoria/:id', [verificacionToken, verificacionToken], (req, res) => {
     
     let id = req.params.id
 

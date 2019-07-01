@@ -97,7 +97,7 @@ app.delete('/usuario/:id', [verificacionToken, verificaAdmin_Role], function(req
         estado: false
     }
 
-    Usuario.findByIdAndUpdate(id, cambiaEstado, { new: true }, (err, usaurioBorrado) => {
+    Usuario.findByIdAndUpdate(id, cambiaEstado, { new: true }, (err, usuarioDB) => {
 
         if (err) {
             return res.status(400).json({
@@ -106,7 +106,7 @@ app.delete('/usuario/:id', [verificacionToken, verificaAdmin_Role], function(req
             })
         }
 
-        if(!usaurioBorrado) {
+        if(!usuarioDB) {
             return res.status(400).json({
                 ok: false,
                 err: {
@@ -117,7 +117,7 @@ app.delete('/usuario/:id', [verificacionToken, verificaAdmin_Role], function(req
 
         res.json({
             ok: true, 
-            usuario: usaurioBorrado
+            usuario: usuarioDB
         })
     })
 
